@@ -31,7 +31,6 @@ app.use(session({
     cookie: {
         secure: false,
         maxAge: 360000,
-        expires: new Date(Date.now() + 360000),
         httpOnly: true
     }
 }))

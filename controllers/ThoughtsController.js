@@ -34,15 +34,15 @@ module.exports = class ThoughtsController{
     static async dashboard(req, res) {
         const UserId = req.session.userid
 
+        if(typeof(UserId) === 'undefined'){
+            return
+        }
+
         const user = await User.findOne({
             where: {id: UserId},
             include: Thought,
             plain: true
         })
-
-        if(!user){
-            res.redirect('/login')
-        }
 
         const thoughts = user.Thoughts.map((result) => result.dataValues)
         let emptyThoughts = false
